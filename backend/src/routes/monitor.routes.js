@@ -1,12 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const { createMonitor } = require("../controllers/monitor.controller");
 const { protect } = require("../middleware/auth.middleware");
 
-router.get("/protected", protect, (req, res) => {
-  res.status(200).json({
-    message: "Protected route accessed",
-    user: req.user,
-  });
-});
+router.post("/", protect, createMonitor);
 
 module.exports = router;

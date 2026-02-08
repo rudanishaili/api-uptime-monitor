@@ -1,30 +1,38 @@
 const mongoose = require("mongoose");
 
-const monitoredApiSchema = new mongoose.Schema(
+const monitoredAPISchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
+      trim: true,
     },
+
     url: {
       type: String,
       required: true,
+      trim: true,
     },
+
     interval: {
-      type: Number, // in minutes
-      default: 5,
+      type: Number,
+      default: 5, // minutes
     },
+
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+
     project: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Project",
       required: true,
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-module.exports = mongoose.model("MonitoredAPI", monitoredApiSchema);
+module.exports = mongoose.model("MonitoredAPI", monitoredAPISchema);

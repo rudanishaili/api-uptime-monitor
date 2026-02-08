@@ -7,18 +7,23 @@ const statusLogSchema = new mongoose.Schema(
       ref: "MonitoredAPI",
       required: true,
     },
+
     status: {
       type: String,
       enum: ["UP", "DOWN"],
       required: true,
     },
+
     responseTime: {
-      type: Number, // ms
+      type: Number, // milliseconds
     },
-    checkedAt: {
-      type: Date,
-      default: Date.now,
+
+    errorMessage: {
+      type: String,
     },
+  },
+  {
+    timestamps: true,
   }
 );
 
